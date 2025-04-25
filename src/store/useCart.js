@@ -48,6 +48,32 @@ const useCart = create((set) => {
                     };
                 }
             }),
+        deleteProduct: (id) =>
+            set((prev) => {
+                const foundItemIndex = prev.products.findIndex(
+                    (item) => item.id === id
+                );
+                if (foundItemIndex != -1) {
+                    const newProducts = prev.products
+                        .map((item, index) => {
+                            if (index == foundItemIndex) {
+                                return {
+                                    ...item,
+                                    quantity: Math.max(item.quantity - 1, 0),
+                                };
+                            } else {
+                                return item;
+                            }
+                        })
+                        .filter(item => item.quantity > 0);
+
+                    localStorage.setItem("cart", JSON.stringify(newProducts));
+                    return {
+                        products: newProducts,
+                    };
+                }
+                return prev;
+            }),
     };
 });
 

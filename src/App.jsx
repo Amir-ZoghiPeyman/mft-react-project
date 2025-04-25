@@ -9,12 +9,14 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Layout>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/products/:productId" element={<SingleProductPage />} />
-          </Routes>
-        </BrowserRouter>
+        <div className="container mx-auto">
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/products/:productId" element={<SingleProductPage />} />
+            </Routes>
+          </BrowserRouter>
+        </div>
       </Layout>
     </QueryClientProvider>
   )

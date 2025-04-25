@@ -1,15 +1,16 @@
 import ProductCard from "../../components/productCard";
 import useFetchData from "../../requests/useFetchData";
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function MainPage() {
 
     const { data: products, isLoading, error, isError } = useFetchData();
 
-    if (isLoading) return <h1>LOADING...</h1>;
-    if (isError) return <h1>an error has been accrued: {error.message}</h1>;
+    if (isLoading) return <h1 className="flex justify-center mt-40"><CircularProgress /></h1>;
+    if (isError) return <h1 className="flex justify-center mt-40">an error has been accrued: {error.message}</h1>;
 
     return (
-        <div className="grid grid-cols-4 gap-3 rounded-2xl shadow-4xl w-full p-2">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-6 p-10 mt-10">
             {products?.data?.map((item) => (
                 <ProductCard
                     title={item.title}
