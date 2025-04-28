@@ -7,9 +7,4 @@ const api = axios.create({
         "Content-Type": "application/JSON"
     }
 })
-
-api.interceptors.request.use(req => req)
-
-api.interceptors.response.use(res => res)
-
 export default api;

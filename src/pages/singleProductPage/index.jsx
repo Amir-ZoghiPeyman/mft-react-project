@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useMemo } from "react";
-import useFetchSingleProduct from "../../requests/useFetchSingleProduct";
-import useCart from "../../store/useCart";
-import Button from '@mui/material/Button';
+import { useNavigate } from "react-router-dom";
 import CircularProgress from '@mui/material/CircularProgress';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useNavigate } from "react-router-dom";
+import Button from '@mui/material/Button';
+import useFetchSingleProduct from "../../requests/useFetchSingleProduct";
+import useCart from "../../store/useCart";
 
 export default function SingleProductPage() {
     const navigate = useNavigate();
