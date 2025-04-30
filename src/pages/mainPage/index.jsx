@@ -1,4 +1,5 @@
 import CircularProgress from '@mui/material/CircularProgress';
+import Hero from '../../components/hero';
 import ProductCard from "../../components/productCard";
 import useFetchData from "../../requests/useFetchData";
 
@@ -29,15 +30,18 @@ export default function MainPage() {
     );
 
     return (
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-6 p-10 mt-10">
-            {products?.data?.map((item) => (
-                <ProductCard
-                    title={item.title}
-                    image={item.image}
-                    key={item.id}
-                    id={item.id}
-                />
-            ))}
-        </div>
+        <>
+            <Hero />
+            <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-6 p-10 mt-10">
+                {products?.data?.map((item) => (
+                    <ProductCard
+                        title={item.title}
+                        image={item.image}
+                        key={item.id}
+                        id={item.id}
+                    />
+                ))}
+            </div>
+        </>
     );
 }
