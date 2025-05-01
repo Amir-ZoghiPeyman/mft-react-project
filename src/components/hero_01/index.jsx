@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import hero from "../../assets/imgs/hero_1.jpg";
 
-export default function Hero() {
+export default function Hero_01() {
     return (
         <div className="relative min-h-[600px]">
 

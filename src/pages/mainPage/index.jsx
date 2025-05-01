@@ -1,5 +1,6 @@
 import CircularProgress from '@mui/material/CircularProgress';
-import Hero from '../../components/hero';
+import Hero_01 from '../../components/hero_01';
+import Section_01 from '../../components/section_01';
 import ProductCard from "../../components/productCard";
 import useFetchData from "../../requests/useFetchData";
 
@@ -31,7 +32,8 @@ export default function MainPage() {
 
     return (
         <>
-            <Hero />
+            <Hero_01 />
+            <Section_01 />
             <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-6 p-10 mt-10">
                 {products?.data?.map((item) => (
                     <ProductCard
