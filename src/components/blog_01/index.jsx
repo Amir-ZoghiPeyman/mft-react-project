@@ -36,13 +36,7 @@ export default function Blog_01() {
                     <div className="flex justify-center lg:justify-start">
                         <Button
                             variant="contained"
-                            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-none uppercase font-bold transition-all shadow-md hover:shadow-lg"
-                            sx={{
-                                '&:hover': {
-                                    transform: 'translateY(-2px)'
-                                }
-                            }}
-                        >
+                            className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-none uppercase font-bold transition-all">
                             Shop Now
                         </Button>
                     </div>
