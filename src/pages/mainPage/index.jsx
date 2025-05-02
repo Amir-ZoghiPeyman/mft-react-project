@@ -1,12 +1,13 @@
 import CircularProgress from '@mui/material/CircularProgress';
-import Hero from '../../components/hero';
-import Section_01 from '../../components/section_01';
 import Feature_01 from '../../components/feature_01';
-import ProductCard from "../../components/productCard";
+import Hero from '../../components/hero';
+import ProductsList from '../../components/productsList';
+import Section_01 from '../../components/section_01';
+import Blog_01 from '../../components/blog_01';
 import useFetchData from "../../requests/useFetchData";
 
 export default function MainPage() {
-    const { data: products, isLoading, error, isError } = useFetchData();
+    const { isLoading, error, isError } = useFetchData();
 
     if (isLoading) return (
         <div className="flex justify-center items-center min-h-[60vh]">
@@ -36,16 +37,8 @@ export default function MainPage() {
             <Hero />
             <Section_01 />
             <Feature_01 />
-            <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-6 p-10 mt-10">
-                {products?.data?.map((item) => (
-                    <ProductCard
-                        title={item.title}
-                        image={item.image}
-                        key={item.id}
-                        id={item.id}
-                    />
-                ))}
-            </div>
+            <ProductsList />
+            <Blog_01 />
         </>
     );
 }
