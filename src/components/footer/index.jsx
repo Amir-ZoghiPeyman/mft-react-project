@@ -4,7 +4,7 @@ import EmailIcon from '@mui/icons-material/Email';
 
 export default function Footer() {
     return (
-        <footer className="bg-gray-900 text-gray-300">
+        <footer className="bg-gray-900 text-gray-300 mt-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
                     <div className="space-y-4">
@@ -44,15 +44,15 @@ export default function Footer() {
                             </div>
                             <div className="flex items-center gap-4">
                                 <AddCallIcon className="text-blue-400" />
-                                <a href="tel:+23923929210" className="text-sm hover:text-blue-400 transition-colors">
+                                <p className="text-sm">
                                     +2 392 3929 210
-                                </a>
+                                </p>
                             </div>
                             <div className="flex items-center gap-4">
                                 <EmailIcon className="text-blue-400" />
-                                <a href="mailto:emailaddress@domain.com" className="text-sm hover:text-blue-400 transition-colors">
+                                <p className="text-sm">
                                     emailaddress@domain.com
-                                </a>
+                                </p>
                             </div>
                         </div>
                     </div>

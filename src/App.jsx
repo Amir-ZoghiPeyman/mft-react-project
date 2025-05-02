@@ -4,6 +4,7 @@ import Layout from "./layout"
 import MainPage from "./pages/mainPage"
 import SingleProductPage from "./pages/singleProductPage"
 import NoMatch from "./pages/noMatch";
+import CartPage from "./pages/cartPage";
 
 const queryClient = new QueryClient()
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/products/:productId" element={<SingleProductPage />} />
+            <Route path="/cart" element={<CartPage />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>
         </BrowserRouter>
