@@ -10,16 +10,16 @@ const queryClient = new QueryClient()
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Layout>
-        <BrowserRouter>
+      <BrowserRouter>
+        <Layout>
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/products/:productId" element={<SingleProductPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>
-        </BrowserRouter>
-      </Layout>
+        </Layout>
+      </BrowserRouter>
     </QueryClientProvider>
   )
 }

@@ -1,56 +1,78 @@
 import { create } from "zustand";
 
 const useCart = create((set) => {
-    let initialCart = [];
-    try {
-        const storedCart = localStorage.getItem("cart");
-        if (storedCart) {
-            const parsed = JSON.parse(storedCart);
-            initialCart = Array.isArray(parsed) ? parsed : [];
-        }
-    } catch (error) {
-        console.error("Failed to parse cart from localStorage:", error);
-        initialCart = [];
-    }
-
+    const prevCart = JSON.parse(localStorage.getItem("cart")) || [];
     return {
-        products: initialCart,
+        products: prevCart,
         addProduct: (id) =>
             set((prev) => {
-                const currentProducts = Array.isArray(prev.products) ? prev.products : [];
-                const foundItemIndex = currentProducts.findIndex((item) => item.id === id);
-
-                if (foundItemIndex !== -1) {
-                    const newProducts = currentProducts.map((item, index) =>
-                        index === foundItemIndex ? { ...item, quantity: item.quantity + 1 } : item
+                const foundItemIndex = prev.products.findIndex(
+                    (item) => item.id === id
+                );
+                if (foundItemIndex != -1) {
+                    const newProducts = prev.products.map((item, index) => {
+                        if (index == foundItemIndex) {
+                            return {
+                                ...item,
+                                quantity: item.quantity + 1,
+                            };
+                        } else {
+                            return item;
+                        }
+                    });
+                    localStorage.setItem("cart", JSON.stringify(newProducts));
+                    return {
+                        products: newProducts,
+                    };
+                } else {
+                    localStorage.setItem(
+                        "cart",
+                        JSON.stringify([
+                            ...prev.products,
+                            {
+                                id,
+                                quantity: 1,
+                            },
+                        ])
                     );
 
-                    localStorage.setItem("cart", JSON.stringify(newProducts));
-                    return { products: newProducts };
+                    return {
+                        products: [
+                            ...prev.products,
+                            {
+                                id,
+                                quantity: 1,
+                            },
+                        ],
+                    };
                 }
-
-                const newProducts = [...currentProducts, { id, quantity: 1 }];
-                localStorage.setItem("cart", JSON.stringify(newProducts));
-                return { products: newProducts };
             }),
         deleteProduct: (id) =>
             set((prev) => {
-                const currentProducts = Array.isArray(prev.products) ? prev.products : [];
-                const foundItemIndex = currentProducts.findIndex((item) => item.id === id);
+                const foundItemIndex = prev.products.findIndex(
+                    (item) => item.id === id
+                );
+                if (foundItemIndex != -1) {
+                    const newProducts = prev.products
+                        .map((item, index) => {
+                            if (index == foundItemIndex) {
+                                return {
+                                    ...item,
+                                    quantity: Math.max(item.quantity - 1, 0),
+                                };
+                            } else {
+                                return item;
+                            }
+                        })
+                        .filter(item => item.quantity > 0);
 
-                if (foundItemIndex === -1) return prev;
-
-                const updatedProducts = currentProducts
-                    .map((item, index) =>
-                        index === foundItemIndex
-                            ? { ...item, quantity: Math.max(item.quantity - 1, 0) }
-                            : item
-                    )
-                    .filter(item => item.quantity > 0);
-
-                localStorage.setItem("cart", JSON.stringify(updatedProducts));
-                return { products: updatedProducts };
-            })
+                    localStorage.setItem("cart", JSON.stringify(newProducts));
+                    return {
+                        products: newProducts,
+                    };
+                }
+                return prev;
+            }),
     };
 });
 

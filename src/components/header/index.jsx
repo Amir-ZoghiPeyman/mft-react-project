@@ -1,8 +1,13 @@
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import { useNavigate } from 'react-router-dom';
+import useCart from '../../store/useCart';
 
 export default function Header() {
+    const navigate = useNavigate()
+    const { products } = useCart();
     return (
         <header className=" sticky top-0 z-50 bg-white shadow-sm">
             <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
@@ -27,16 +32,19 @@ export default function Header() {
 
                     <div className="flex items-center justify-between w-full sm:w-auto order-1 sm:order-2">
                         <div className="flex items-center space-x-4 sm:space-x-6">
+                            <button onClick={() => navigate("/")} className="p-2 text-gray-700 hover:text-yellow-600 transition-colors duration-200">
+                                <HomeOutlinedIcon fontSize="medium" />
+                            </button>
                             <button className="p-2 text-gray-700 hover:text-blue-600 transition-colors duration-200">
                                 <AccountCircleOutlinedIcon fontSize="medium" />
                             </button>
                             <button className="p-2 text-gray-700 hover:text-red-500 transition-colors duration-200">
                                 <FavoriteBorderOutlinedIcon fontSize="medium" />
                             </button>
-                            <button className="p-2 text-gray-700 hover:text-green-600 transition-colors duration-200 relative">
+                            <button onClick={() => navigate("/cart")} className="p-2 text-gray-700 hover:text-green-600 transition-colors duration-200 relative">
                                 <ShoppingCartOutlinedIcon fontSize="medium" />
                                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                                    0
+                                    {products?.length || 0}
                                 </span>
                             </button>
                         </div>
