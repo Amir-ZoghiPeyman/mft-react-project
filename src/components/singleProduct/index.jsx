@@ -12,7 +12,7 @@ export default function SingleProduct() {
     const navigate = useNavigate();
     const { productId } = useParams();
     const { data, isLoading, error } = useFetchSingleProduct(productId);
-    const { products, addProduct, deleteProduct } = useCart();
+    const { products, addProduct, reduceProduct } = useCart();
 
     const productCount = useMemo(() => {
         const foundIndex = products.findIndex((item) => item.id === productId);
