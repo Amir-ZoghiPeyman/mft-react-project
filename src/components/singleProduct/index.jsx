@@ -34,10 +34,10 @@ export default function SingleProduct() {
         <>
             <div className="max-w-6xl mx-auto px-4 py-8">
                 <button
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate(-1)}
                     className="flex items-center gap-2 mb-6 text-gray-600 hover:text-gray-900 transition-colors"
                 >
-                    <ArrowBackIcon /> Back to products
+                    <ArrowBackIcon /> Back to Products
                 </button>
 
                 <div className="flex flex-col md:flex-row gap-8">
@@ -67,7 +67,7 @@ export default function SingleProduct() {
                         <div className="flex items-center gap-6 mt-8">
                             <div className="flex items-center gap-4">
                                 <Button
-                                    onClick={() => deleteProduct(productId)}
+                                    onClick={() => reduceProduct(productId)}
                                     variant="outlined"
                                     color="error"
                                     size="large"
@@ -79,7 +79,12 @@ export default function SingleProduct() {
                                     {productCount}
                                 </span>
                                 <Button
-                                    onClick={() => addProduct(productId)}
+                                    onClick={() => addProduct({
+                                        id: productId,
+                                        title: data?.data?.title,
+                                        price: data?.data?.price,
+                                        image: data?.data?.image
+                                    })}
                                     variant="contained"
                                     color="success"
                                     size="large"
