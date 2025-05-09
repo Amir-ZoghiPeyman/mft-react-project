@@ -51,7 +51,7 @@ const useCart = create((set) => {
             localStorage.setItem("cart", JSON.stringify(newProducts));
             return { products: newProducts };
         }),
-        
+
         clearCart: () => set(() => {
             localStorage.setItem("cart", JSON.stringify([]));
             return { products: [] };
