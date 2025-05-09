@@ -94,7 +94,11 @@ export default function SingleProduct() {
                             </div>
 
                             {productCount > 0 && (
-                                <span className="text-green-600 font-medium">
+                                <span
+                                    className="text-green-600 font-medium cursor-pointer"
+                                    onClick={() => navigate("/cart")}
+                                >
+
                                     In cart
                                 </span>
                             )}

@@ -73,12 +73,13 @@ export default function Cart() {
                                     <div className="flex items-center gap-2 sm:gap-4">
                                         <div className="w-8 h-8 relative">
                                             {item.quantity === 1 ? (
-                                                <IconButton
+                                                <Button
                                                     onClick={() => removeProduct(item.id)}
+                                                    variant="outlined"
                                                     className="text-red-500 hover:bg-red-50 w-full h-full"
                                                 >
                                                     <DeleteIcon fontSize="small" />
-                                                </IconButton>
+                                                </Button>
                                             ) : (
                                                 <Button
                                                     variant="outlined"
