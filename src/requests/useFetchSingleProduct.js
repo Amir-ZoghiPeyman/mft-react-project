@@ -9,5 +9,6 @@ export default function useFetchSingleProduct(productId) {
     return useQuery({
         queryFn,
         queryKey: [`singleProduct${productId}`],
+        retry: 4,
     })
 }

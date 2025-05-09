@@ -10,6 +10,6 @@ export default function useFetchData() {
     return useQuery({
         queryFn,
         queryKey: ["allProducts"],
-        retry: 1,
+        retry: 4,
     })
 }

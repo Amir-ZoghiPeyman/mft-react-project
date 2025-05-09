@@ -13,5 +13,5 @@ export default function MainPage() {
             <ProductsList />
             <Blog_01 />
         </>
-    );
+    )
 }

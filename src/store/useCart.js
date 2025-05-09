@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 const useCart = create((set) => {
     const prevCart = JSON.parse(localStorage.getItem("cart")) || [];
+
     return {
         products: prevCart,
 
@@ -12,8 +13,7 @@ const useCart = create((set) => {
                 const newProducts = prev.products.map((item, index) =>
                     index === foundItemIndex
                         ? { ...item, quantity: item.quantity + 1 }
-                        : item
-                );
+                        : item);
                 localStorage.setItem("cart", JSON.stringify(newProducts));
                 return { products: newProducts };
             }
@@ -39,8 +39,7 @@ const useCart = create((set) => {
                 .map((item, index) =>
                     index === foundItemIndex
                         ? { ...item, quantity: Math.max(item.quantity - 1, 0) }
-                        : item
-                )
+                        : item)
                 .filter(item => item.quantity > 0);
 
             localStorage.setItem("cart", JSON.stringify(newProducts));
@@ -52,6 +51,7 @@ const useCart = create((set) => {
             localStorage.setItem("cart", JSON.stringify(newProducts));
             return { products: newProducts };
         }),
+        
         clearCart: () => set(() => {
             localStorage.setItem("cart", JSON.stringify([]));
             return { products: [] };
